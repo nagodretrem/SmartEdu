@@ -9,9 +9,3 @@ export function getAboutPage(req, res) {
     page_name: "about",
   });
 }
-
-export function getCoursesPage(req, res) {
-  res.status(200).render("courses", {
-    page_name: "courses",
-  });
-}

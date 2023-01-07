@@ -10,5 +10,6 @@ import {
 const router = express.Router();
 
 router.route("/").post(createCourse);
+router.route("/").get(getAllCourses);
 
 export default router;
