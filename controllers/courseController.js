@@ -34,12 +34,10 @@ export const getAllCourses = async (req, res) => {
 
 export const getCourse = async (req, res) => {
   try {
-    const course = await Course.findById(req.params.id);
-    res.status(200).json({
-      status: "success",
-      data: {
-        course,
-      },
+    const course = await Course.findOne({ slug: req.params.slug });
+    res.status(200).render("course", {
+      course,
+      page_name: "course",
     });
   } catch (err) {
     res.status(400).json({
