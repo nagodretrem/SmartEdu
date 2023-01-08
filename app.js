@@ -4,6 +4,7 @@ import connectDB from "./config/database.js";
 import pageRoute from "./routes/pageRoute.js";
 import courseRoute from "./routes/courseRoute.js";
 import categoryRoute from "./routes/categoryRoute.js";
+import userRoute from "./routes/userRoute.js";
 
 // Load config
 dotenv.config();
@@ -24,6 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/", pageRoute);
 app.use("/courses", courseRoute);
 app.use("/categories", categoryRoute);
+app.use("/users", userRoute);
 
 // Start server
 app.listen(process.env.PORT || 5000, () => {

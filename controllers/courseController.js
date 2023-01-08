@@ -21,11 +21,11 @@ export const createCourse = async (req, res) => {
 export const getAllCourses = async (req, res) => {
   try {
     const categorySlug = req.query.categories;
-    const category = await Category.findOne({ slug: categorySlug });
 
     let filter = {};
 
     if (categorySlug) {
+      const category = await Category.findOne({ slug: categorySlug });
       filter = { category: category._id };
     }
 
