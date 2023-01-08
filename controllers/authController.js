@@ -29,7 +29,7 @@ export const loginUser = async (req, res) => {
         if (result === true) {
           // user session
           req.session.userID = user._id;
-          res.status(200).redirect("/");
+          res.status(200).redirect("/users/dashboard");
         } else {
           res.status(400).json({
             status: "fail",
@@ -62,4 +62,12 @@ export const logoutUser = async (req, res) => {
       message: err,
     });
   }
+};
+
+export const getDashboardPage = async (req, res) => {
+  const user = await User.findById(req.session.userID);
+  res.status(200).render("dashboard", {
+    page_name: "dashboard",
+    user,
+  });
 };
