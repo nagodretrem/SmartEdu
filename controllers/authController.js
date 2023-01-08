@@ -45,3 +45,21 @@ export const loginUser = async (req, res) => {
     });
   }
 };
+
+export const logoutUser = async (req, res) => {
+  try {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.redirect("/");
+      }
+      //sonra bakıcaz
+      res.clearCookie(process.env.SESS_NAME);
+      res.redirect("/");
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};

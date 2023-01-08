@@ -1,6 +1,7 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import connectDB from "./config/database.js";
 import pageRoute from "./routes/pageRoute.js";
 import courseRoute from "./routes/courseRoute.js";
@@ -31,6 +32,10 @@ app.use(
     secret: "my_keyboard_cat",
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URL,
+      dbName: "smartedu",
+    }),
   })
 );
 
