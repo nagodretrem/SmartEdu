@@ -28,10 +28,8 @@ export const loginUser = async (req, res) => {
       bcrypt.compare(password, user.password, (err, result) => {
         if (result === true) {
           // user session
-          res.status(200).json({
-            status: "success",
-            message: "User logged in successfully",
-          });
+          req.session.userID = user._id;
+          res.status(200).redirect("/");
         } else {
           res.status(400).json({
             status: "fail",
